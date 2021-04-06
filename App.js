@@ -75,6 +75,7 @@ const App = () => {
       // setUserToken('sdnfosangngaSLGNLFSNGlnfdlnlgndfglfmglLNKSFNGLFNG');
       // setIsLoading(false);
       let userToken;
+      // userToken = null;
       email = null;
       if( email === 'test@test.com' && password == '123456') {
         userToken = 'sdnfosangngaSLGNLFSNGlnfdlnlgndfglfmglLNKSFNGLFNG';
@@ -87,8 +88,16 @@ const App = () => {
       dispatch({ type: 'LOGOUT' })
     },
     signUp: () => {
-      setUserToken('sdnfosangngaSLGNLFSNGlnfdlnlgndfglfmglLNKSFNGLFNG');
-      setIsLoading(false);
+      // setUserToken('sdnfosangngaSLGNLFSNGlnfdlnlgndfglfmglLNKSFNGLFNG');
+      // setIsLoading(false);
+      let userToken;
+      firstName = null;
+      lastName = null;
+      email = null;
+      if( firstName == 'Jack' && lastName == 'Bowman' && email == 'test@test.com' && password == '123456') {
+        userToken = 'sdnfosangngaSLGNLFSNGlnfdlnlgndfglfmglLNKSFNGLFNG';
+      }
+      dispatch({ type: 'REGISTER', firstName: action.id, lastName: lastName ,email: email, userToken: userToken})
     },
   }));
 
@@ -114,15 +123,14 @@ const App = () => {
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer style={styles.container}>
-        { loginState.userToken !== null ? (
-          <MainScreen />
-        ): 
-        
+        { loginState.userToken !== null ? (  
         <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         </Stack.Navigator>
+        ):        
+        <MainScreen />
         }
       </NavigationContainer>  
     </AuthContext.Provider>

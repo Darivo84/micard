@@ -3,10 +3,12 @@ import { Text, TextInput, StyleSheet, ScrollView, KeyboardAvoidingView } from 'r
 import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
 
+
 import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
 
 import { AuthContext } from '../context';
+import Users from '../../model/users';
 
 const Login = ({ navigation }) =>{
 
@@ -83,14 +85,14 @@ const Login = ({ navigation }) =>{
         } );
 
         if ( data.email.length == 0 || data.password.length == 0 ) {
-            Alert.alert('Wrong Input!', 'Email or password field cannot be empty.', [
+            alert('Wrong Input!', 'Email or password field cannot be empty.', [
                 {text: 'Okay'}
             ]);
             return;
         }
 
         if ( foundUser.length == 0 ) {
-            Alert.alert('Invalid User!', 'Email address or password is incorrect.', [
+            alert('Invalid User!', 'Email address or password is incorrect.', [
                 {text: 'Okay'}
             ]);
             return;
@@ -122,17 +124,7 @@ const Login = ({ navigation }) =>{
                     onChangeText={(val) => textInputChange(val)}
                     onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)}
                 />
-                {data.check_textInputChange ? 
-                <Animatable.View
-                    animation="bounceIn"
-                >
-                    <Feather 
-                        name="check-circle"
-                        color="white"
-                        size={20}
-                    />
-                </Animatable.View>
-                : null}
+                {data.check_textInputChange}
                 <TextInput
                     placeholder="Password"
                     placeholderTextColor={'rgba(255,255,255,0.5)'}
@@ -197,6 +189,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 12,
         paddingTop: 20,
+    },
+    errorMsg: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: 'bold',
     },
 });
 

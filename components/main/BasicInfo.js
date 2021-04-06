@@ -15,7 +15,9 @@ export default function BasicInfo({ navigation }) {
             <KeyboardAwareScrollView
                 style={{ flex: 1 }}
             >
-            <Header />
+            <Header 
+                style={{ marginTop: 30 }}
+            />
                 <Text style={styles.title}>Basic Information</Text>
                 <TextInput
                     placeholder="First Name"
@@ -133,4 +135,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
         marginBottom: 8,
     },
+    buttonBottom: {
+        paddingBottom: 75,
+    }
 });
