@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Header from '../../src/shared/Header';
@@ -36,40 +36,40 @@ export class Login extends Component {
             >
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
-                    behavior="padding"
                     enable={true}
                 >
                     <ScrollView>
                     <Header />
                     <Text style={styles.title}>Please Login</Text>
+                    <View>
+                        <TextInput
+                            placeholder="Email"
+                            placeholderTextColor={'rgba(255,255,255,0.5)'}
+                            onChangeText={(email) => this.setState({ email })}
+                            returnKeyType = { "next" }
+                            onSubmitEditing={() => { this.secondTextInput.focus() }}
+                            style={styles.inputs}
+                        />
+                        <TextInput
+                            placeholder="Password"
+                            placeholderTextColor={'rgba(255,255,255,0.5)'}
+                            secureTextEntry={true}
+                            onChangeText={(password) => this.setState({ password })}
+                            ref={(input) => { this.secondTextInput = input; }}
+                            style={styles.inputs}
+                        />
 
-                    <TextInput
-                        placeholder="Email"
-                        placeholderTextColor={'rgba(255,255,255,0.5)'}
-                        onChangeText={(email) => this.setState({ email })}
-                        returnKeyType = { "next" }
-                        onSubmitEditing={() => { this.secondTextInput.focus() }}
-                        style={styles.inputs}
-                    />
-                    <TextInput
-                        placeholder="Password"
-                        placeholderTextColor={'rgba(255,255,255,0.5)'}
-                        secureTextEntry={true}
-                        onChangeText={(password) => this.setState({ password })}
-                        ref={(input) => { this.secondTextInput = input; }}
-                        style={styles.inputs}
-                    />
-
-                    <FlatButton 
-                        text="Login"
-                        onPress={() => {this.onLogin()}}
-                    />
-                    <Text 
-                        style={styles.goBack}
-                        onPress={() => { this.props.navigation.goBack("Landing")}}
-                    >
-                        back
-                    </Text>
+                        <FlatButton 
+                            text="Login"
+                            onPress={() => {this.onLogin()}}
+                        />
+                        <Text 
+                            style={styles.goBack}
+                            onPress={() => { this.props.navigation.goBack("Landing")}}
+                        >
+                            back
+                        </Text>
+                    </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
             </LinearGradient>

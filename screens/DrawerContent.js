@@ -6,9 +6,6 @@ import {
     Caption,
     Paragraph,
     Drawer,
-    Text, 
-    TouchableRipple,
-    Switch
 } from 'react-native-paper';
 import {
     DrawerContentScrollView,
@@ -55,7 +52,7 @@ export function DrawerContent(props) {
                     </View>
 
                     <Drawer.Section style={styles.drawerSection}>
-                        <Drawer.Item
+                        <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
                                     name="home-outline"
@@ -66,7 +63,7 @@ export function DrawerContent(props) {
                             label="Profile"
                             onPress={() => {props.navigation.navigate('Profile')}}
                         />
-                        <Drawer.Item
+                        <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
                                     name="account-outline"
@@ -77,7 +74,7 @@ export function DrawerContent(props) {
                             label="Business Profile"
                             onPress={() => {props.navigation.navigate('BusinessProfile')}}
                         />
-                        <Drawer.Item
+                        <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
                                     name="information-outline"
@@ -88,7 +85,7 @@ export function DrawerContent(props) {
                             label="Basic Information"
                             onPress={() => {props.navigation.navigate('BasicInfo')}}
                         />
-                        <Drawer.Item
+                        <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
                                     name="hospital-box-outline"
@@ -99,7 +96,7 @@ export function DrawerContent(props) {
                             label="Medical Information"
                             onPress={() => {props.navigation.navigate('MedicalInfo')}}
                         />
-                        <Drawer.Item
+                        <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
                                     name="select-search"
@@ -110,7 +107,7 @@ export function DrawerContent(props) {
                             label="Search"
                             onPress={() => {props.navigation.navigate('Search')}}
                         />
-                        <Drawer.Item
+                        <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
                                     name="camera-outline"
@@ -126,7 +123,7 @@ export function DrawerContent(props) {
                 </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
-                <Drawer.Item
+                <DrawerItem
                     icon={({color, size}) => (
                         <Icon
                             name="exit-to-app"

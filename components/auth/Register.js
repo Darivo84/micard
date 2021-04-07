@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import firebase from 'firebase'
@@ -52,53 +52,55 @@ export class Register extends Component {
                     <Header />
                     <Text style={styles.title}>Please Sign Up</Text>
 
-                    <TextInput
-                        placeholder="Enter your first name"
-                        placeholderTextColor={'rgba(255,255,255,0.5)'}
-                        onChangeText={(firstName) => this.setState({ firstName })}
-                        returnKeyType = { "next" }
-                        onSubmitEditing={() => { this.secondTextInput.focus() }}
-                        style={styles.inputs}
-                    />
-                    <TextInput
-                        placeholder="Enter your last name"
-                        placeholderTextColor={'rgba(255,255,255,0.5)'}
-                        onChangeText={(lastName) => this.setState({ lastName })}
-                        returnKeyType = { "next" }
-                        ref={(input) => { this.secondTextInput = input; }}
-                        onSubmitEditing={() => { this.thirdTextInput.focus() }}
-                        style={styles.inputs}
-                    />
-                    <TextInput
-                        placeholder="Enter your email address"
-                        placeholderTextColor={'rgba(255,255,255,0.5)'}
-                        onChangeText={(email) => this.setState({ email })}
-                        returnKeyType = { "next" }
-                        ref={(input) => { this.thirdTextInput = input; }}
-                        onSubmitEditing={() => { this.fourthTextInput.focus() }}
-                        style={styles.inputs}
-                    />
-                    <TextInput
-                        placeholder="Enter your password"
-                        placeholderTextColor={'rgba(255,255,255,0.5)'}
-                        onChangeText={(password) => this.setState({ password })}
-                        ref={(input) => { this.fourthTextInput = input; }}
-                        secureTextEntry
-                        style={styles.inputs}
-                    />
+                    <View>
+                        <TextInput
+                            placeholder="Enter your first name"
+                            onChangeText={(firstName) => this.setState({ firstName })}
+                            placeholderTextColor={'rgba(255,255,255,0.5)'}
+                            returnKeyType = { "next" }
+                            onSubmitEditing={() => { this.secondTextInput.focus() }}
+                            style={styles.inputs}
+                        />
+                        <TextInput
+                            placeholder="Enter your last name"
+                            onChangeText={(lastName) => this.setState({ lastName })}
+                            placeholderTextColor={'rgba(255,255,255,0.5)'}
+                            returnKeyType = { "next" }
+                            ref={(input) => { this.secondTextInput = input; }}
+                            onSubmitEditing={() => { this.thirdTextInput.focus() }}
+                            style={styles.inputs}
+                        />
+                        <TextInput
+                            placeholder="Enter your email address"
+                            onChangeText={(email) => this.setState({ email })}
+                            placeholderTextColor={'rgba(255,255,255,0.5)'}
+                            returnKeyType = { "next" }
+                            ref={(input) => { this.thirdTextInput = input; }}
+                            onSubmitEditing={() => { this.fourthTextInput.focus() }}
+                            style={styles.inputs}
+                        />
+                        <TextInput
+                            placeholder="Enter your password"
+                            secureTextEntry={true}
+                            onChangeText={(password) => this.setState({ password })}
+                            placeholderTextColor={'rgba(255,255,255,0.5)'}
+                            ref={(input) => { this.fourthTextInput = input; }}
+                            style={styles.inputs}
+                        />
 
-                    <FlatButton 
-                        text="Sign Up"
-                        onPress={() => this.onSignUp()}
-                    >
+                        <FlatButton 
+                            text="Sign Up"
+                            onPress={() => this.onSignUp()}
+                        >
 
-                    </FlatButton>
-                    <Text 
-                        style={styles.goBack}
-                        onPress={() => { this.props.navigation.goBack("Landing")}}
-                    >
-                        back
-                    </Text>
+                        </FlatButton>
+                        <Text 
+                            style={styles.goBack}
+                            onPress={() => { this.props.navigation.goBack("Landing")}}
+                        >
+                            back
+                        </Text>
+                    </View>
                     
                     </KeyboardAwareScrollView>
                 
