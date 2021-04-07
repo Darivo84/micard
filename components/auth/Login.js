@@ -1,161 +1,81 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, TextInput, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import { LinearGradient } from 'expo-linear-gradient';
-
 
 import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
 
-import { AuthContext } from '../context';
-import Users from '../../model/users';
+import firebase from 'firebase'
 
-const Login = ({ navigation }) =>{
-
-    const [data, setData] = React.useState({
-        email: '',
-        password: '',
-        check_textInputChange: false,
-        secureTextEntry: true,
-        isValidUser: true,
-        isValidPassword: true,
-    });
-
-    const { login } = React.useContext(AuthContext);
-
-    const textInputChange = (val) => {
-        if( val.trim().length >= 4 ) {
-            setData({
-                ...data,
-                email: val,
-                check_textInputChange: true,
-                isValidUser: true
-            });
-        } else {
-            setData({
-                ...data,
-                email: val,
-                check_textInputChange: false,
-                isValidUser: false
-            });
+export class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
         }
+        this.onLogin = this.onLogin.bind(this);
     }
 
-    const handlePasswordChange = (val) => {
-        if( val.trim().length >= 8 ) {
-            setData({
-                ...data,
-                password: val,
-                isValidPassword: true
-            });
-        } else {
-            setData({
-                ...data,
-                password: val,
-                isValidPassword: false
-            });
-        }
+    onLogin() {
+        const { email, password } = this.state;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
-    const updateSecureTextEntry = () => {
-        setData({
-            ...data,
-            secureTextEntry: !data.secureTextEntry
-        });
-    }
-
-    const handleValidUser = (val) => {
-        if( val.trim().length >= 4 ) {
-            setData({
-                ...data,
-                isValidUser: true
-            });
-        } else {
-            setData({
-                ...data,
-                isValidUser: false
-            });
-        }
-    }
-
-    const loginHandle = (email, password) => {
-
-        const foundUser = Users.filter( item => {
-            return email == item.email && password == item.password;
-        } );
-
-        if ( data.email.length == 0 || data.password.length == 0 ) {
-            alert('Wrong Input!', 'Email or password field cannot be empty.', [
-                {text: 'Okay'}
-            ]);
-            return;
-        }
-
-        if ( foundUser.length == 0 ) {
-            alert('Invalid User!', 'Email address or password is incorrect.', [
-                {text: 'Okay'}
-            ]);
-            return;
-        }
-        signIn(foundUser);
-    }
-    
-    return (
-        <LinearGradient
-            colors={['#733BC3', '#C4346C', '#C64156']}  
-            style={styles.container}
-        >
-            <KeyboardAvoidingView
-                style={{ flex: 1 }}
-                behavior="padding"
-                enable={true}
+    render() {
+        return (
+            <LinearGradient
+                colors={['#733BC3', '#C4346C', '#C64156']}  
+                style={styles.container}
             >
-                <ScrollView>
-                <Header />
-                <Text style={styles.title}>Please Login</Text>
-
-                <TextInput
-                    placeholder="Email"
-                    placeholderTextColor={'rgba(255,255,255,0.5)'}
-                    // onChangeText={(email) => this.setState({ email })}
-                    returnKeyType = { "next" }
-                    onSubmitEditing={() => { secondTextInput.focus() }}
-                    style={styles.inputs}
-                    onChangeText={(val) => textInputChange(val)}
-                    onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)}
-                />
-                {data.check_textInputChange}
-                <TextInput
-                    placeholder="Password"
-                    placeholderTextColor={'rgba(255,255,255,0.5)'}
-                    // ref={(input) => { secondTextInput = input; }}
-                    style={styles.inputs}
-                    onChangeText={(val) => handlePasswordChange(val)}
-                    secureTextEntry={data.secureTextEntry ? true : false}
-                />
-                { data.isValidPassword ? null : 
-                    <Animatable.View animation="fadeInLeft" duration={500}>
-                    <Text style={styles.errorMsg}>Password must be 6 characters long.</Text>
-                    </Animatable.View>
-                }
-
-                <FlatButton 
-                    text="Login"
-                    // onPress={() => {login()}}
-                    onPress={() => {loginHandle( data.email, data.password )}}
-                />
-                <Text 
-                    style={styles.goBack}
-                    onPress={() => { navigation.goBack("Landing")}}
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior="padding"
+                    enable={true}
                 >
-                    back
-                </Text>
-                </ScrollView>
-            </KeyboardAvoidingView>
-        </LinearGradient>
-    )
-}
+                    <ScrollView>
+                    <Header />
+                    <Text style={styles.title}>Please Login</Text>
 
+                    <TextInput
+                        placeholder="Email"
+                        placeholderTextColor={'rgba(255,255,255,0.5)'}
+                        onChangeText={(email) => this.setState({ email })}
+                        returnKeyType = { "next" }
+                        onSubmitEditing={() => { this.secondTextInput.focus() }}
+                        style={styles.inputs}
+                    />
+                    <TextInput
+                        placeholder="Password"
+                        placeholderTextColor={'rgba(255,255,255,0.5)'}
+                        secureTextEntry={true}
+                        onChangeText={(password) => this.setState({ password })}
+                        ref={(input) => { this.secondTextInput = input; }}
+                        style={styles.inputs}
+                    />
+
+                    <FlatButton 
+                        text="Login"
+                        onPress={() => {this.onLogin()}}
+                    />
+                    <Text 
+                        style={styles.goBack}
+                        onPress={() => { this.props.navigation.goBack("Landing")}}
+                    >
+                        back
+                    </Text>
+                    </ScrollView>
+                </KeyboardAvoidingView>
+            </LinearGradient>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -190,11 +110,6 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         paddingTop: 20,
     },
-    errorMsg: {
-        color: '#fff',
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
 });
 
-export default Login;
+export default Login

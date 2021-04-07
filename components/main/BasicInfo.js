@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { Text, TextInput, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -7,6 +7,26 @@ import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
 
 export default function BasicInfo({ navigation }) {
+
+    useLayoutEffect(() => { 
+        navigation.setOptions({
+          headerRight: () => { 
+            <TouchableOpacity 
+              style={{ marginRight: 30 }}
+              onPress={signOut}
+            >
+              <AntDesign name="logout" size={24} color="black" />
+            </TouchableOpacity>
+          }
+        })
+      })
+    
+      const signOut = () => {
+        firebase.auth().signOut().then(() => {
+          navigation.replace('LandingScreen')
+        })
+      }
+
     return (
         <LinearGradient
                 colors={['#733BC3', '#C4346C', '#C64156']}

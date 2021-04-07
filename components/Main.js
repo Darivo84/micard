@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons';
+import { Text, TouchableOpacity } from 'react-native';
+import { Avatar } from 'react-native-elements';
 
 import ProfileScreen from './main/Profile';
 import BusinessProfileScreen from './main/BusinessProfile';
@@ -12,23 +15,37 @@ import CameraScreen from './main/Camera';
 import SearchScreen from './main/Search';
 import InviteScreen from './main/Invite';
 
+import { DrawerContent } from '../screens/DrawerContent'
+
 const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator();
 
-// import { AuthContext } from '../components/context';
+export default function Home ({ navigation }) {
+  //*
+  // Use below to sign out!!!
+  //
 
-export default function Home () {
+  // useLayoutEffect(() => { 
+  //   navigation.setOptions({
+  //     headerRight: () => { 
+  //       <TouchableOpacity 
+  //         style={{ marginRight: 30 }}
+  //         onPress={signOut}
+  //       >
+  //         <AntDesign name="logout" size={24} color="black" />
+  //       </TouchableOpacity>
+  //     }
+  //   })
+  // })
 
-  // const { logout } = React.useContext();
+  // const signOut = () => {
+  //   firebase.auth().signOut().then(() => {
+  //     navigation.replace('LandingScreen')
+  //   })
+  // }
 
   return (
-      <Drawer.Navigator initialRouteName="Home" options={{ 
-        title: 'Basic Information',
-        headerLeft: () => {
-          <Icon.Button name="ios-menu" size={25}
-          backgroundColor='rgba(0,0,0,0.5)' onPress={() => {navigation.openDrawer()}} ></Icon.Button>
-        }
-      }}>
+      <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />} >
         <Drawer.Screen name="BasicInfo" component={BasicInfoScreen} />
         <Drawer.Screen name="MedicalInfo" component={MedicalInfoScreen} />
         <Drawer.Screen name="Profile" component={ProfileScreen} />
