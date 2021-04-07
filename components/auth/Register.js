@@ -29,7 +29,8 @@ export class Register extends Component {
                 firebase.firestore().collection("users")
                     .doc(firebase.auth().currentUser.uid)
                     .set({
-                        name,
+                        firstName,
+                        lastName,
                         email
                     })
                 console.log(result)
@@ -94,7 +95,7 @@ export class Register extends Component {
                     </FlatButton>
                     <Text 
                         style={styles.goBack}
-                        onPress={() => { navigation.goBack("Landing")}}
+                        onPress={() => { this.props.navigation.goBack("Landing")}}
                     >
                         back
                     </Text>
