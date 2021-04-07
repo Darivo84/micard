@@ -15,9 +15,16 @@ import {
     DrawerItem
 } from '@react-navigation/drawer';
 
+import firebase from 'firebase'
+import "firebase/firestore";
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export function DrawerContent(props) {
+    const onLogout = () => {
+        firebase.auth().signOut();
+    }
+
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView {...props}>
@@ -128,7 +135,7 @@ export function DrawerContent(props) {
                         />
                     )}
                     label="Logout"
-                    onPress={() => {firebase.auth().signOut('Landing');}}
+                    onPress={() => onLogout()}
                 />
             </Drawer.Section>
         </View>

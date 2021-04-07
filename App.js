@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import firebase from 'firebase'
-import { auth } from './firebase';
+import firebase from "firebase"
+import 'firebase/auth';
+import 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAXv2JfpbCV8ZLsKY8yR5Nvb8rhjYPullU",
+  authDomain: "mctest-6374a.firebaseapp.com",
+  projectId: "mctest-6374a",
+  storageBucket: "mctest-6374a.appspot.com",
+  messagingSenderId: "898460944776",
+  appId: "1:898460944776:web:edd3f954b597a2f1c2123d"
+};
+
+if(firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+} 
 
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -70,8 +84,8 @@ export class App extends Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
       );

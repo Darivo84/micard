@@ -5,10 +5,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import firebase from 'firebase'
 import "firebase/firestore";
 
-// import { auth } from '../../firebase'; 
-// import * as Animatable from 'react-native-animatable';
-// import AsyncStorage from '@react-native-community/async-storage';
-
 import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
 
@@ -33,8 +29,7 @@ export class Register extends Component {
                 firebase.firestore().collection("users")
                     .doc(firebase.auth().currentUser.uid)
                     .set({
-                        firstName,
-                        lastName,
+                        name,
                         email
                     })
                 console.log(result)
