@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Animatable from 'react-native-animatable';
 
 import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
@@ -13,6 +14,8 @@ export class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            // isValidEmail: true,
+            // isValidPassword: true,
         }
         this.onLogin = this.onLogin.bind(this);
     }
@@ -25,6 +28,7 @@ export class Login extends Component {
             })
             .catch((error) => {
                 console.log(error)
+                alert(error.message)
             })
     }
 
@@ -50,6 +54,9 @@ export class Login extends Component {
                             onSubmitEditing={() => { this.secondTextInput.focus() }}
                             style={styles.inputs}
                         />
+                        {/* <Animatable.View animation="fadeInBottom" duration="500">
+                            <Text style={styles.errorMsg}>Please enter a vaild email address.</Text>
+                        </Animatable.View> */}
                         <TextInput
                             placeholder="Password"
                             placeholderTextColor={'rgba(255,255,255,0.5)'}
@@ -109,6 +116,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 12,
         paddingTop: 20,
+    },
+    errorMsg: {
+        color: '#fff',
+        fontSize: 14,
     },
 });
 
