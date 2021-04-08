@@ -1,7 +1,14 @@
 import React from 'react'
-import { Text, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+    Avatar,
+    // Title,
+    // Caption,
+    // Paragraph,
+    // Drawer,
+} from 'react-native-paper';
 
 import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
@@ -15,7 +22,15 @@ export default function BusinessProfile() {
             <KeyboardAwareScrollView
                 style={{ flex: 1 }}
             >
-                <Header />
+                {/* <Header /> */}
+                <View style={{ flexDirection: 'row', marginTop: 15, alignItems: 'center', justifyContent:'center' }}>
+                    <Avatar.Image 
+                        source={{
+                            uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTrP4qkO6SB3uOHkHc_ZzIqhbpizgCsOzbiw&usqp=CAU'
+                        }}
+                        size={125}
+                    />
+                </View>
                 <ActivityIndicator size="large" />
                 <Text style={styles.title}>Business Profile Loading...</Text>
             </KeyboardAwareScrollView>

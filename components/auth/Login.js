@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { Text, TextInput, StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Header from '../../src/shared/Header';
@@ -41,7 +41,7 @@ export class Login extends Component {
                     <ScrollView>
                     <Header />
                     <Text style={styles.title}>Please Login</Text>
-                    <View>
+                    
                         <TextInput
                             placeholder="Email"
                             placeholderTextColor={'rgba(255,255,255,0.5)'}
@@ -69,7 +69,7 @@ export class Login extends Component {
                         >
                             back
                         </Text>
-                    </View>
+                    
                     </ScrollView>
                 </KeyboardAvoidingView>
             </LinearGradient>

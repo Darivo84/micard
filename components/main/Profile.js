@@ -1,7 +1,14 @@
 import React from 'react'
-import { Text, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+    Avatar,
+    // Title,
+    // Caption,
+    // Paragraph,
+    // Drawer,
+} from 'react-native-paper';
 
 import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
@@ -15,9 +22,28 @@ export default function Profile() {
             <KeyboardAwareScrollView
                 style={{ flex: 1 }}
             >
-                <Header />
+                <View style={{ flexDirection: 'row', marginTop: 15, alignItems: 'center', justifyContent:'center' }}>
+                    <Avatar.Image 
+                        source={{
+                            uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTrP4qkO6SB3uOHkHc_ZzIqhbpizgCsOzbiw&usqp=CAU'
+                        }}
+                        size={125}
+                    />
+                </View>
                 <ActivityIndicator size="large" />
                 <Text style={styles.title}>Profile Loading...</Text>
+
+                <View style={{ alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={{ color: 'white', fontSize: 24 }}>User Name</Text>
+                    <View style={{ flexDirection: 'row', paddingTop: 45 }}>
+                        <View style={{ alignItems: 'left', justifyContent: 'left' }} >
+                            <Text style={{ color: 'white', fontSize: 16 }}>D.O.B</Text>
+                        </View>
+                        <View style={{ alignItems: 'right', justifyContent: 'right' }}>
+                            <Text style={{ color: 'white', fontSize: 16 }}>28/10/1984</Text>
+                        </View>
+                    </View>
+                </View>
             </KeyboardAwareScrollView>
         </LinearGradient>
     )

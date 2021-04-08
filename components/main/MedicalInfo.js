@@ -3,7 +3,7 @@ import { Text, TextInput, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import Header from '../../src/shared/Header';
+// import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
 
 export default function MedicalInfo ({ navigation }) {
@@ -16,8 +16,8 @@ export default function MedicalInfo ({ navigation }) {
             <KeyboardAwareScrollView
                 style={{ flex: 1 }}
             >
-            <Header />
-            <Text style={styles.title}>Medical Information</Text>
+            {/* <Header />
+            <Text style={styles.title}>Medical Information</Text> */}
             <Text style={styles.questions}>Do you have any allergies?</Text>
             <TextInput
                 placeholder="Yes / No"

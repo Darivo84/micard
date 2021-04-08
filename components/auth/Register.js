@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { Text, TextInput, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import firebase from 'firebase'
@@ -52,7 +52,6 @@ export class Register extends Component {
                     <Header />
                     <Text style={styles.title}>Please Sign Up</Text>
 
-                    <View>
                         <TextInput
                             placeholder="Enter your first name"
                             onChangeText={(firstName) => this.setState({ firstName })}
@@ -91,16 +90,14 @@ export class Register extends Component {
                         <FlatButton 
                             text="Sign Up"
                             onPress={() => this.onSignUp()}
-                        >
+                        />
 
-                        </FlatButton>
                         <Text 
                             style={styles.goBack}
                             onPress={() => { this.props.navigation.goBack("Landing")}}
                         >
                             back
                         </Text>
-                    </View>
                     
                     </KeyboardAwareScrollView>
                 

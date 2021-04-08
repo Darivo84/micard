@@ -3,30 +3,12 @@ import { Text, TextInput, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import Header from '../../src/shared/Header';
+// import Header from '../../src/shared/Header';
 import FlatButton from '../../src/shared/Button';
 
 export default function BasicInfo({ navigation }) {
 
-    useLayoutEffect(() => { 
-        navigation.setOptions({
-          headerRight: () => { 
-            <TouchableOpacity 
-              style={{ marginRight: 30 }}
-              onPress={signOut}
-            >
-              <AntDesign name="logout" size={24} color="black" />
-            </TouchableOpacity>
-          }
-        })
-      })
-    
-      const signOut = () => {
-        firebase.auth().signOut().then(() => {
-          navigation.replace('LandingScreen')
-        })
-      }
-
+   
     return (
         <LinearGradient
                 colors={['#733BC3', '#C4346C', '#C64156']}
@@ -35,10 +17,10 @@ export default function BasicInfo({ navigation }) {
             <KeyboardAwareScrollView
                 style={{ flex: 1 }}
             >
-            <Header 
+            {/* <Header 
                 style={{ marginTop: 30 }}
             />
-                <Text style={styles.title}>Basic Information</Text>
+                <Text style={styles.title}>Basic Information</Text> */}
                 <TextInput
                     placeholder="First Name"
                     returnKeyType = { "next" }
@@ -122,7 +104,7 @@ export default function BasicInfo({ navigation }) {
                 
                 <FlatButton 
                         text="Continue to Step 2"
-                        onPress={() => navigation.navigate("MedicalInfo")}
+                        onPress={() => navigation.navigate("Medical Information")}
                 />
                 
             </KeyboardAwareScrollView>

@@ -46,13 +46,13 @@ export default function Home ({ navigation }) {
 
   return (
       <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />} >
-        <Drawer.Screen name="BasicInfo" component={BasicInfoScreen} />
-        <Drawer.Screen name="MedicalInfo" component={MedicalInfoScreen} />
-        <Drawer.Screen name="Profile" component={ProfileScreen} />
-        <Drawer.Screen name="BusinessProfile" component={BusinessProfileScreen} />
-        <Drawer.Screen name="Camera" component={CameraScreen} />
-        <Drawer.Screen name="Search" component={SearchScreen} />
-        <Drawer.Screen name="Invite" component={InviteScreen} />
+        <Drawer.Screen name="Basic Information" component={BasicInfoScreen} options={{ headerShown: true }} />
+        <Drawer.Screen name="Medical Information" component={MedicalInfoScreen} options={{ headerShown: true }} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} options={{ headerShown: true }} />
+        <Drawer.Screen name="Business Profile" component={BusinessProfileScreen} options={{ headerShown: true }} />
+        <Drawer.Screen name="Camera" component={CameraScreen} options={{ headerShown: true }}/>
+        <Drawer.Screen name="Search" component={SearchScreen} options={{ headerShown: true }} />
+        <Drawer.Screen name="Invite" component={InviteScreen} options={{ headerShown: true }} />
       </Drawer.Navigator>
   );
 }

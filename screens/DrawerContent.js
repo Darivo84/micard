@@ -72,7 +72,7 @@ export function DrawerContent(props) {
                                 />
                             )}
                             label="Business Profile"
-                            onPress={() => {props.navigation.navigate('BusinessProfile')}}
+                            onPress={() => {props.navigation.navigate('Business Profile')}}
                         />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -83,7 +83,7 @@ export function DrawerContent(props) {
                                 />
                             )}
                             label="Basic Information"
-                            onPress={() => {props.navigation.navigate('BasicInfo')}}
+                            onPress={() => {props.navigation.navigate('Basic Information')}}
                         />
                         <DrawerItem
                             icon={({color, size}) => (
@@ -94,7 +94,7 @@ export function DrawerContent(props) {
                                 />
                             )}
                             label="Medical Information"
-                            onPress={() => {props.navigation.navigate('MedicalInfo')}}
+                            onPress={() => {props.navigation.navigate('Medical Information')}}
                         />
                         <DrawerItem
                             icon={({color, size}) => (
